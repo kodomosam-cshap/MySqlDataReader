@@ -1,0 +1,23 @@
+public MySqlDataReader selecionarVeiculo(string idos)
+{
+
+	try
+	{
+		conexao = new MySqlConnection(connectionString);
+
+		conexao.Open();
+
+		string STRSELECT = "SELECT VEICULO, MODELO FROM TBVEICULOS WHERE IDOS = '" + idos + "'";
+
+		MySqlCommand command = new MySqlCommand(STRSELECT, conexao);
+		MySqlDataReader reader = command.ExecuteReader();
+
+		return reader;
+	}
+	catch (Exception ex)
+	{
+
+		throw new Exception("error ao selecionar o veiculo: " + ex.Message);
+	}
+
+}

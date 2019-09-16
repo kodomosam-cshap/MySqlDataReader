@@ -1,0 +1,55 @@
+private void ButtonPesquisarOS_Click(object sender, EventArgs e)
+{
+	Dal da = new Dal();
+			   
+
+	if (!txtOS.Text.Equals(""))
+	{
+		dataGridViewItens.DataSource = da.selecionarItensOS(txtOS.Text);
+
+		formataDataGridView();
+
+		MySqlDataReader reader = da.selecionarVeiculo(txtOS.Text);
+
+		reader.Read();
+
+		string strVeiculo = reader["VEICULO"].ToString();
+		strVeiculo += " " + reader["MODELO"].ToString();
+
+		labelVeiculo.Text = strVeiculo;
+
+	}
+	else
+	{
+		MessageBox.Show("Informe a OS");
+	}
+	//else if (!txtPlaca.Text.Equals(""))
+	//{
+	//    dataGridViewItens.DataSource = da.selecionarItensOSPlaca(txtPlaca.Text);
+
+	//    MySqlDataReader reader = da.selecionarVeiculoPLACA(txtPlaca.Text);
+
+	//    reader.Read();
+
+	//    string strVeiculo = reader["VEICULO"].ToString();
+	//    strVeiculo += " " + reader["MODELO"].ToString();
+
+	//    labelVeiculo.Text = strVeiculo;
+
+	//}
+	//else if (!txtCpf.Text.Equals(""))
+	//{
+	//    dataGridViewItens.DataSource = da.selecionarItensOSCPF(txtCpf.Text);
+
+	//    MySqlDataReader reader = da.selecionarVeiculoCPF(txtCpf.Text);
+
+	//    reader.Read();
+
+	//    string strVeiculo = reader["VEICULO"].ToString();
+	//    strVeiculo += " " + reader["MODELO"].ToString();
+
+	//    labelVeiculo.Text = strVeiculo;
+
+	//}
+
+}
